@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import type { Technology } from "../types/technology";
 import TechnologyCard from "./TechnologyCard";
 import YourStack from "./YourStack";
+import { toast } from "react-toastify";
+
 
 const Technologies = () => {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
@@ -13,18 +15,27 @@ const Technologies = () => {
   const alreadyExists = selectedTechnologies.find((item) => item.id === technology.id);
 
    if (alreadyExists) {
-    alert("This technology is already in your stack!");
+    toast.warning("Technology already added!");
     return;
   }
 
   setSelectedTechnologies([...selectedTechnologies, technology,]);
+   toast.success("Technology added to stack!");
 };
 
  const handleRemoveTechnology = (id: string) => {
   const remainingTechnologies = selectedTechnologies.filter((technology) => technology.id !== id);
+  toast.info("Technology removed!");
 
   setSelectedTechnologies(remainingTechnologies);
 };
+
+
+const handleRemoveAll = () => {
+  setSelectedTechnologies([]);
+  toast.error("All technologies removed!");
+};
+
 
 
   useEffect(() => {
@@ -60,10 +71,13 @@ const Technologies = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {technologies.map((technology) => (
               <TechnologyCard
-                key={technology.id}
-                technology={technology}
-                handleAddTechnology={handleAddTechnology}
-              />
+                 key={technology.id}
+                 technology={technology}
+                 handleAddTechnology={handleAddTechnology}
+                 isAdded={selectedTechnologies.some(
+                  (item) => item.id === technology.id
+                 )}
+               />
             ))}
           </div>
         </div>
@@ -71,7 +85,8 @@ const Technologies = () => {
         <div>
           <YourStack
             selectedTechnologies={selectedTechnologies}
-            handleRemoveTechnology={handleRemoveTechnology}/>
+            handleRemoveTechnology={handleRemoveTechnology}
+            handleRemoveAll={handleRemoveAll}/>
         </div>
       </div>
     </section>

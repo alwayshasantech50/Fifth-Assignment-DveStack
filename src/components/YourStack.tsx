@@ -3,11 +3,13 @@ import type { Technology } from "../types/technology";
 type YourStackProps = {
   selectedTechnologies: Technology[];
   handleRemoveTechnology: (id: string) => void;
+  handleRemoveAll: () => void;
 };
 
 const YourStack = ({
   selectedTechnologies,
-  handleRemoveTechnology}: YourStackProps) => {
+  handleRemoveTechnology,
+  handleRemoveAll }: YourStackProps) => {
   return (
     <div className="bg-white p-5 rounded-xl shadow-md sticky top-24">
       <h2 className="text-xl font-bold">
@@ -45,12 +47,18 @@ const YourStack = ({
                 onClick={() =>
                   handleRemoveTechnology(technology.id)
                 }
-                className="text-red-500 font-bold text-lg cursor-pointer">
+                className="text-pink-600 font-bold text-lg cursor-pointer">
                 ✕
               </button>
-              
+
             </div>
           ))}
+            <button
+              onClick={handleRemoveAll}
+              className="w-full mt-4 text-white bg-linear-to-r from-orange-500 via-pink-500 to-violet-500 py-2 rounded-md cursor-pointer">
+               Remove All
+            </button>
+
         </div>
       )}
     </div>

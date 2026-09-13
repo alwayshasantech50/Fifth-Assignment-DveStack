@@ -3,12 +3,13 @@ import type { Technology } from "../types/technology";
 type TechnologyCardProps = {
   technology: Technology;
   handleAddTechnology: (technology: Technology) => void;
+  isAdded: boolean;
 };
 
 
-const TechnologyCard = ({ technology, handleAddTechnology, }: TechnologyCardProps) => {
+const TechnologyCard = ({ technology, handleAddTechnology, isAdded }: TechnologyCardProps) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300">
 
       
       <div className="flex justify-between items-center">
@@ -52,10 +53,12 @@ const TechnologyCard = ({ technology, handleAddTechnology, }: TechnologyCardProp
 
       
       
-      <button 
-      onClick={() => handleAddTechnology(technology)}
-      className="w-full bg-slate-900 text-white text-sm py-2 rounded-md mt-4 cursor-pointer">
-        Add to Stack
+      <button
+       disabled={isAdded}
+       onClick={() => handleAddTechnology(technology)}
+        className={`w-full text-white text-sm py-2 rounded-md mt-4 transition duration-300 ${
+         isAdded ? "bg-green-600 cursor-not-allowed" : "bg-slate-900 hover:bg-pink-700" }`}>
+          {isAdded ? "✓ Added to Stack" : "Add to Stack"}
       </button>
 
     </div>
