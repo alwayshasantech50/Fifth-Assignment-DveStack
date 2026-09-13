@@ -6,44 +6,54 @@ type TechnologyCardProps = {
 
 const TechnologyCard = ({ technology }: TechnologyCardProps) => {
   return (
-    <div className="card bg-base-100 shadow-md border border-gray-200">
-      <div className="card-body">
+    <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
 
-        <div className="flex justify-between items-center">
-          <img src={technology.icon} alt={technology.name}
-            className="w-10 h-10"
-          />
+      
+      <div className="flex justify-between items-center">
+        <img src={technology.icon} alt={technology.name}
+          className="w-8 h-8"
+        />
 
-          <span className="badge badge-outline">
-            {technology.badge}
-          </span>
-        </div>
+        <span className="text-xs border border-gray-200 rounded-full px-3 py-1">
+          {technology.badge}
+        </span>
+      </div>
 
-        <h2 className="card-title">
-          {technology.name}
-        </h2>
+     
 
-        <p className="text-sm text-gray-500">
-          {technology.description}
-        </p>
+      <h3 className="text-lg font-semibold mt-4">
+        {technology.name}
+      </h3>
 
-        <div className="flex gap-2 flex-wrap">
-          <span className="badge">
-            {technology.category}
-          </span>
+      
 
-          <span className="badge badge-outline">
-            {technology.difficulty}
-          </span>
-        </div>
+      <p className="text-xs text-gray-500 mt-2">
+        {technology.description}
+      </p>
 
-        <div className="flex justify-between items-center">
-          <span>⭐ {technology.rating}</span>
+      
+      <div className="flex justify-between items-center mt-4 text-xs">
 
-          <button className="btn btn-primary">Add To Stack</button>
-        </div>
+        <span className="bg-gray-100 px-2 py-1 rounded">
+          {technology.category}
+        </span>
+
+        <span className="text-gray-500">
+          {technology.difficulty}
+        </span>
+
+        <span>
+          ⭐ {technology.rating}
+        </span>
 
       </div>
+
+      
+      
+      <button className="w-full bg-slate-900 text-white text-sm py-2 rounded-md mt-4">
+        Add to Stack
+      </button>
+
     </div>
   );
 };
