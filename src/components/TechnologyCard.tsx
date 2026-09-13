@@ -2,9 +2,11 @@ import type { Technology } from "../types/technology";
 
 type TechnologyCardProps = {
   technology: Technology;
+  handleAddTechnology: (technology: Technology) => void;
 };
 
-const TechnologyCard = ({ technology }: TechnologyCardProps) => {
+
+const TechnologyCard = ({ technology, handleAddTechnology, }: TechnologyCardProps) => {
   return (
     <div className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
 
@@ -50,7 +52,9 @@ const TechnologyCard = ({ technology }: TechnologyCardProps) => {
 
       
       
-      <button className="w-full bg-slate-900 text-white text-sm py-2 rounded-md mt-4">
+      <button 
+      onClick={() => handleAddTechnology(technology)}
+      className="w-full bg-slate-900 text-white text-sm py-2 rounded-md mt-4">
         Add to Stack
       </button>
 
