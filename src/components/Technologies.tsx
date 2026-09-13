@@ -20,14 +20,15 @@ const Technologies = () => {
   }
 
   return (
-    <div>
-      <h2>Technologies: {technologies.length}</h2>
-
-      {technologies.map((technology) => (
-        <TechnologyCard key={technology.id} technology={technology} />
-      ))}
-    </div>
-  );
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {technologies.map((technology) => (
+      <TechnologyCard
+        key={technology.id}
+        technology={technology}
+      />
+    ))}
+  </div>
+);
 };
 
 export default Technologies;
