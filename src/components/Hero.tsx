@@ -12,7 +12,7 @@ const Hero = () => {
             Build Your Ideal
           </h1>
 
-          <h1 className="text-5xl font-bold bg-linear-to-r from-orange-500 via-pink-500 to-violet-500 bg-clip-text text-transparent">
+          <h1 className="text-5xl font-bold brand-gradient bg-clip-text text-transparent">
             Development Stack
           </h1>
 
@@ -23,7 +23,7 @@ const Hero = () => {
           </p>
 
           <div className="mt-8 flex gap-4">
-            <button className="btn border-0 text-white bg-linear-to-r from-orange-500 via-pink-500 to-violet-500">
+            <button className="btn border-0 text-white brand-gradient">
               Explore Technologies
             </button>
 
