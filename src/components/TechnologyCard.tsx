@@ -54,7 +54,7 @@ const TechnologyCard = ({ technology, handleAddTechnology, }: TechnologyCardProp
       
       <button 
       onClick={() => handleAddTechnology(technology)}
-      className="w-full bg-slate-900 text-white text-sm py-2 rounded-md mt-4">
+      className="w-full bg-slate-900 text-white text-sm py-2 rounded-md mt-4 cursor-pointer">
         Add to Stack
       </button>
 

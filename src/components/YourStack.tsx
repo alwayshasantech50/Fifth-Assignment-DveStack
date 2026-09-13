@@ -2,47 +2,59 @@ import type { Technology } from "../types/technology";
 
 type YourStackProps = {
   selectedTechnologies: Technology[];
+  handleRemoveTechnology: (id: string) => void;
 };
 
-const YourStack = ({ selectedTechnologies }: YourStackProps) => {
+const YourStack = ({
+  selectedTechnologies,
+  handleRemoveTechnology}: YourStackProps) => {
   return (
     <div className="bg-white p-5 rounded-xl shadow-md sticky top-24">
-      <h2 className="text-xl font-bold"> Your Stack ({selectedTechnologies.length}) </h2>
-      
- {selectedTechnologies.length === 0 ? (
-  <p className="mt-4 text-gray-500"> No technologies selected yet.</p>
-) : (
-  <div className="mt-4 space-y-3">
-    {selectedTechnologies.map((technology) => (
-      <div
-        key={technology.id}
-        className="flex items-center gap-3 border rounded-lg p-3">
-        <img src={technology.icon} alt={technology.name}
-          className="w-8 h-8"
-        />
+      <h2 className="text-xl font-bold">
+        Your Stack ({selectedTechnologies.length})
+      </h2>
 
-        <div>
-          <h3 className="font-medium">
-            {technology.name}
-          </h3>
+      {selectedTechnologies.length === 0 ? (
+        <p className="mt-4 text-gray-500">
+          No technologies selected yet.
+        </p>
+      ) : (
+        <div className="mt-4 space-y-3">
+          {selectedTechnologies.map((technology) => (
+            <div
+              key={technology.id}
+              className="flex justify-between items-center border rounded-lg p-3"
+            >
+              <div className="flex items-center gap-3">
+                <img src={technology.icon} alt={technology.name}
+                  className="w-8 h-8"
+                />
 
-          <p className="text-xs text-gray-500">
-            {technology.category}
-          </p>
+                <div>
+                  <h3 className="font-medium">
+                    {technology.name}
+                  </h3>
+
+                  <p className="text-xs text-gray-500">
+                    {technology.category}
+                  </p>
+                </div>
+              </div>
+
+              <button
+                onClick={() =>
+                  handleRemoveTechnology(technology.id)
+                }
+                className="text-red-500 font-bold text-lg cursor-pointer">
+                ✕
+              </button>
+              
+            </div>
+          ))}
         </div>
-
-      </div>
-
-    ))}
-
-  </div>
-
-)}
-
-
-</div>
-
-);
+      )}
+    </div>
+  );
 };
 
 export default YourStack;

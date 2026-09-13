@@ -6,12 +6,26 @@ import YourStack from "./YourStack";
 const Technologies = () => {
   const [technologies, setTechnologies] = useState<Technology[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedTechnologies, setSelectedTechnologies] = useState<
-    Technology[]
-  >([]);
-  const handleAddTechnology = (technology: Technology) => {
-    setSelectedTechnologies([...selectedTechnologies, technology]);
-  };
+  const [selectedTechnologies, setSelectedTechnologies] = useState<Technology[]>([]);
+
+ const handleAddTechnology = (technology: Technology) => {
+
+  const alreadyExists = selectedTechnologies.find((item) => item.id === technology.id);
+
+   if (alreadyExists) {
+    alert("This technology is already in your stack!");
+    return;
+  }
+
+  setSelectedTechnologies([...selectedTechnologies, technology,]);
+};
+
+ const handleRemoveTechnology = (id: string) => {
+  const remainingTechnologies = selectedTechnologies.filter((technology) => technology.id !== id);
+
+  setSelectedTechnologies(remainingTechnologies);
+};
+
 
   useEffect(() => {
     fetch("/technologies.json")
@@ -55,7 +69,9 @@ const Technologies = () => {
         </div>
 
         <div>
-          <YourStack selectedTechnologies={selectedTechnologies} />
+          <YourStack
+            selectedTechnologies={selectedTechnologies}
+            handleRemoveTechnology={handleRemoveTechnology}/>
         </div>
       </div>
     </section>
